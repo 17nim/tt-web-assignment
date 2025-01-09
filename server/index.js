@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
 const mysql = require('mysql2/promise')
-// require('dotenv').config()
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
 
 let conn = null
 const port = 8000
@@ -26,6 +28,19 @@ app.get('/usersdb', async (req, res) => {
     } catch (error) {
         console.error('Error fetching users:', error.message)
         res.status(500).json({ error: 'Error fetching users' })
+    }
+})
+
+app.post('/usersdb', async (req, res) => {
+    let user = req.body
+
+    try {
+        const result = await conn.query('INSERT INTO users SET ?', user)
+        const userId = result[0].insertId
+        res.status(201).json({ message: 'User created successfully', userId })
+    } catch (error) {
+        console.error('Error creating user:', error.message)
+        res.status(500).json({ error: 'Error creating user' })
     }
 })
 
