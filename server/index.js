@@ -3,27 +3,33 @@ const app = express()
 const mysql = require('mysql2/promise')
 // require('dotenv').config()
 
+let conn = null
 const port = 8000
+
+const initDB = async () => {
+    conn = await mysql.createConnection({
+        host: 'localhost',
+        user: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: 'tt_assignment_db'
+    })
+}
 
 app.get('/hello_world', (req, res) => {
     res.send('Hello, world!')
 })
 
-app.listen(port, () => {
-    console.log(`The server is live! Port: ${port}`)
+app.get('/usersdb', async (req, res) => {
+    try {
+        const results = await conn.query('SELECT * FROM users')
+        res.json(results[0])
+    } catch (error) {
+        console.error('Error fetching users:', error.message)
+        res.status(500).json({ error: 'Error fetching users' })
+    }
 })
 
-app.get('/usersdb', (req, res) => {
-    mysql.createConnection({
-        host: 'localhost',
-        user: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: 'tt_assignment_db'
-    }).then((conn) => {
-        conn
-            .query('SELECT * FROM users')
-            .then((results) => {
-                res.json(results[0])
-            })
-    })
+app.listen(port, async () => {
+    await initDB()
+    console.log(`The server is live! Port: ${port}`)
 })
