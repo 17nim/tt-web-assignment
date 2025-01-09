@@ -1,0 +1,14 @@
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+.button {
+    padding-top: 7px;
+    /* Some padding */
+    font-size: 16px;
+    /* Set a font size */
+}
