@@ -14,4 +14,5 @@ CREATE TABLE IF NOT EXISTS users (
 DELETE FROM users;
 
 INSERT INTO users VALUES
-    (012345, 'Jane', 'Doe', '0981020726', '17nim.m@gmail.com');
+    (012345, 'Jane', 'Doe', '0981020726', '17nim.m@gmail.com'),
+    (123456, 'firstname1', 'lastname1', '0987654321','mail1@test.co');
