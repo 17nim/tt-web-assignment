@@ -33,14 +33,27 @@ app.get('/usersdb', async (req, res) => {
 
 app.post('/usersdb', async (req, res) => {
     let user = req.body
-
     try {
-        const result = await conn.query('INSERT INTO users SET ?', user)
-        const userId = result[0].insertId
-        res.status(201).json({ message: 'User created successfully', userId })
+        const results = await conn.query('INSERT INTO users SET ?', user)
+        res.status(201).json({ message: 'User created successfully!' })
     } catch (error) {
         console.error('Error creating user:', error.message)
         res.status(500).json({ error: 'Error creating user' })
+    }
+})
+
+app.put('/usersdb/:hn', async (req, res) => {
+    let hn = req.params.hn
+    try {
+        const results = await conn.query('SELECT * FROM users WHERE hn = ?', hn)
+        if (results[0].length == 0) {
+            res.status(404).json({ message: 'User not found.'})
+        } else {
+            res.json(results[0][0])
+        }
+    } catch (error) {
+        console.error('Error fetching user:', error.message)
+        res.status(500).json({ error: 'Error fetching user' })
     }
 })
 
