@@ -35,10 +35,10 @@ async function addUser() {
             phone_number: phoneNumberDOM.value,
             email: emailDOM.value
         }
-        checkEmptyField(userData)
-
-        await axios.post(`http://localhost:8000/usersdb`, userData)
-        backToIndex()
+        if (checkInvalidField(userData)) {
+            await axios.post(`http://localhost:8000/usersdb`, userData)
+            backToIndex()
+        }
     } catch (error) {
         console.error('Error adding users:', error.message)
     }
@@ -59,7 +59,7 @@ async function saveUserData() {
             phone_number: phoneNumberDOM.value,
             email: emailDOM.value
         }
-        if (checkEmptyField(userData)) {
+        if (checkInvalidField(userData)) {
             await axios.delete(`http://localhost:8000/usersdb/${hnDOM.value}`)
             await axios.post(`http://localhost:8000/usersdb`, userData)
             backToIndex()
@@ -81,7 +81,7 @@ async function deleteUser() {
     }
 }
 
-function checkEmptyField(userData) {
+function checkInvalidField(userData) {
     if (userData.first_name == '') {
         alert('Please enter a first name.')
         return false
