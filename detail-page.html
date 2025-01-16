@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail Page</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container pt-5">
+        <h1>เจ้าของ</h1>
+        <form class="row g-3">
+            <div class="col-md">
+                <label for="hn" class="col-form-label">HN</label>
+                <input type="hn" class="form-control" id="hn" disabled>
+            </div>
+            <div class="col-md">
+                <label for="first-name" class="col-form-label">ชื่อ</label>
+                <input type="text" class="form-control" id="first-name" required>
+            </div>
+            <div class="col-md">
+                <label for="last-name" class="col-form-label">นามสกุล</label>
+                <input type="text" class="form-control" id="last-name" required>
+            </div>
+            <div class="col-md">
+                <label for="phone-number" class="col-form-label">เบอร์ติดต่อ</label>
+                <input type="text" class="form-control" id="phone-number" required>
+            </div>
+            <div class="col-md">
+                <label for="email" class="col-form-label">Email</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="container pt-3">
+                <button type="button" onclick="backToIndex()" class="btn btn-outline-primary col-1">Cancel</button>
+                <button type="button" onclick="addUser()" class="btn btn-primary col-1">Add</button>
+                <button type="button" onclick="saveUserData()" class="btn btn-primary col-1">Save</button>
+                <button type="button" onclick="deleteUser()" class="btn btn-outline-danger col-1">Delete</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="detail_page.js"></script>
+</body>
+
+</html>
