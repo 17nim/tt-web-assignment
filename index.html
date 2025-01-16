@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Master Table</title>
+
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/v/bs5/dt-2.2.0/r-3.0.3/datatables.min.css" rel="stylesheet">
-    <link href="https://code.jquery.com/jquery-3.7.1.js" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=edit_document" />
 
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/dt-2.2.0/r-3.0.3/datatables.min.js"></script>
-
-    <title>Master Table</title>
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
 </head>
 
 <body>
     <script src="main.js"></script>
-    <div>
-        <table id="example" class="table table-striped" style="width:50%">
+    <div class="container pt-5">
+        <h1>ค้นหาเจ้าของ</h1>
+        <table id="master" class="table align-middle">
             <thead>
                 <tr>
                     <th>Operation</th>
@@ -28,19 +33,13 @@
                     <th>อีเมล</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td><button>yes</button></td>
-                    <td>Row 1 Data 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                </tr>
+            <tbody id="master-body">
             </tbody>
         </table>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
