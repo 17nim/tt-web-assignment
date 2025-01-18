@@ -62,11 +62,12 @@ app.get('/usersdb/:hn', async (req, res) => {
 app.delete('/usersdb/:hn', async (req, res) => {
     let hn = req.params.hn
     try {
-        const results = await conn.query('DELETE FROM users WHERE hn = ?', hn)
+        let results = await conn.query('SELECT * FROM users WHERE hn = ?', hn)
         if (results[0].length == 0) {
             res.status(404).json({ message: 'User not found.' })
         } else {
             res.json(results[0][0])
+            results = await conn.query('DELETE FROM users WHERE hn = ?', hn)
         }
     } catch (error) {
         console.error('Error fetching user:', error.message)
